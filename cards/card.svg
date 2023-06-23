@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Camada_2" data-name="Camada 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 529.92 292.64">
+  <defs>
+    <style>
+      .cls-1 {
+        letter-spacing: 0em;
+      }
+
+      .cls-2 {
+        fill: url(#Gradiente_sem_nome_76);
+      }
+
+      .cls-3 {
+        fill: none;
+        stroke: #fff;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 2.17px;
+      }
+
+      .cls-4 {
+        fill: #fff;
+        font-family: BespokeStencilVariable-Regular, 'Bespoke Stencil Variable';
+        font-size: 22.55px;
+        font-variation-settings: 'wght' 400;
+      }
+    </style>
+    <linearGradient id="Gradiente_sem_nome_76" data-name="Gradiente sem nome 76" x1="0" y1="146.32" x2="529.92" y2="146.32" gradientUnits="userSpaceOnUse">
+      <stop offset=".15" stop-color="#6acc6a"/>
+      <stop offset=".47" stop-color="#3bcc6a"/>
+      <stop offset=".94" stop-color="#1f8607"/>
+    </linearGradient>
+  </defs>
+  <g id="Camada_1-2" data-name="Camada 1">
+    <rect class="cls-2" width="529.92" height="292.64" rx="54.72" ry="54.72"/>
+    <g>
+      <g>
+        <path class="cls-3" d="m89.6,29.48c-4.87.04-9.42-3.49-18.15-.65,0,0-8,2.9-11.45,14.56,0,0,11.97,3.07,17.94-.18,7.93-3.74,11.62-13.73,11.65-13.73Z"/>
+        <path class="cls-3" d="m81.16,33.61s-18.17,1.85-25.69,15.73"/>
+        <g>
+          <path class="cls-3" d="m50.54,56.08c2.46,4.2,1.68,9.9,8.51,16.04,0,0,6.51,5.48,18.33,2.63,0,0-3.33-11.9-9.12-15.45-7.2-5-17.7-3.2-17.72-3.23Z"/>
+          <path class="cls-3" d="m58.34,61.33s10.69,14.81,26.47,14.39"/>
+        </g>
+        <g>
+          <path class="cls-3" d="m94.2,76.51c2.4-4.23,7.73-6.41,9.64-15.39,0,0,1.49-8.38-6.89-17.19,0,0-8.64,8.84-8.82,15.63-.73,8.74,6.08,16.93,6.07,16.96Z"/>
+          <path class="cls-3" d="m94.84,67.14s7.48-16.66-.77-30.11"/>
+        </g>
+      </g>
+      <text class="cls-4" transform="translate(118.24 48.05)"><tspan x="0" y="0">E</tspan><tspan class="cls-1" x="13.01" y="0">C</tspan><tspan x="27.49" y="0">O</tspan><tspan x="0" y="22.55">CHANGE</tspan></text>
+    </g>
+  </g>
+</svg>
