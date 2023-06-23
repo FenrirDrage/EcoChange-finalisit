@@ -113,11 +113,11 @@
   
       // Create the cards for each type of "Eco ponto"
       const ecoPontos = [
-        'Eco ponto Amarelo',
-        'Eco ponto Azul',
-        'Eco ponto Verde',
-        'Eco ponto Vermelho',
-        'Eco ponto Castanho'
+        'Eco ponto Amarelo: Plastico/Latas',
+        'Eco ponto Azul: Papel/Cartão',
+        'Eco ponto Verde: Vidro',
+        'Eco ponto Vermelho: Pilhas',
+        'Eco ponto Castanho: Óleo Vegetal'
       ];
   
       // Mapping between card names and colors
@@ -197,11 +197,34 @@
         modal.style.display = 'block';
     });
     } else if (item === 'Ranking') {
-      // DOM layout changes for 'Ranking' item
-      // Example: Show specific content or update styles
+      const rankingData = localStorage.getItem('topUsers');
+      const ranking = JSON.parse(rankingData);
+
+      const rankingContainer = document.createElement('div');
+      rankingContainer.classList.add('ranking-container');
+
       const heading = document.createElement('h1');
-      heading.textContent = 'partida rankeada';
-      contentContainer.appendChild(heading);
+      heading.textContent = 'Ranking';
+
+      rankingContainer.appendChild(heading);
+
+      // Sort the ranking array in descending order
+      ranking.sort((a, b) => b.score - a.score);
+
+      // Display the top three entries
+      for (let i = 0; i < Math.min(3, ranking.length); i++) {
+        const rank = i + 1;
+        const entry = ranking[i];
+
+        const entryElement = document.createElement('p');
+        entryElement.textContent = `${rank}. ${entry.name}: ${entry.score}`;
+
+        rankingContainer.appendChild(entryElement);
+      }
+
+      contentContainer.appendChild(rankingContainer);
+      document.body.appendChild(contentContainer);
+    
   
     } else if (item === 'User') {
        // DOM layout changes for 'User' item

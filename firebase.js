@@ -89,3 +89,30 @@ const loadUserData = async () => {
 
 // Call the function to load the user data
 loadUserData();
+
+// Import Firebase Firestore
+import { db } from './firebase'; // Assuming you have set up the Firebase configuration properly
+
+// Function to fetch top three users with highest points
+async function fetchTopUsers() {
+  try {
+    const usersRef = db.collection('users');
+    const querySnapshot = await usersRef.orderBy('points', 'desc').limit(3).get();
+
+    const topUsers = [];
+    querySnapshot.forEach((doc) => {
+      const userData = doc.data();
+      topUsers.push({
+        name: userData.name,
+        points: userData.points
+      });
+    });
+
+    localStorage.setItem('topUsers', JSON.stringify(topUsers));
+  } catch (error) {
+    console.error('Error fetching top users:', error);
+  }
+}
+
+// Call the fetchTopUsers function to retrieve and store the top users
+fetchTopUsers();
