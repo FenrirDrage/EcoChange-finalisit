@@ -7,6 +7,8 @@ import {
   listAll,
   getBlob,
   deleteObject,
+  doc,
+  setDoc
 } from "https://www.gstatic.com/firebasejs/9.19.0/firebase-storage.js";
 
 import {
@@ -44,7 +46,7 @@ window.register = async () => {
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredentials) => {
       // Signed in
-      alert("Conta criada com sucesso.")
+      alert("Login criada com sucesso.")
       const user = result.user;
       uid = result.user.uid;
 
