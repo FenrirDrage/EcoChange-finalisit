@@ -40,7 +40,10 @@ const auth = getAuth(app);
 window.register = async () => {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
-  console.log(email, password);
+  const fname = document.getElementById("firstname").value;
+  const lname = document.getElementById("lastname").value;
+
+  console.log(email, password, fname, lname);
 
   // Firebase code
   createUserWithEmailAndPassword(auth, email, password)
