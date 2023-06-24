@@ -3,8 +3,17 @@
   var imageURL = localStorage.getItem("imageURL");
   var storedName = localStorage.getItem('name');
   var storedSurname = localStorage.getItem('surname');
-
+  const centerDataString = localStorage.getItem("centerData");
   console.log(localStorage);
+ 
+  // Recuperar o centerData do localStorage
+
+  if (centerDataString) {
+    const centerData = JSON.parse(centerDataString);
+    console.log("Dados recuperados do localStorage:", centerData);
+  } else {
+    console.log("Não há dados armazenados no localStorage.");
+  }
 
   function selectItem(item, event) {
     event.preventDefault(); // Prevent the default link behavior
