@@ -38,16 +38,35 @@ const storage = getStorage(app);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-//Register Function
-window.register = async () => {
+//LogIn function
+window.logIn = () => {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
-  const name = document.getElementById("firstname").value;
-  const surname = document.getElementById("lastname").value;
-  const age = document.getElementById("age").value;
-  console.log(email, password, name, surname, age);
+  console.log(email, password);
 
-  //Register Function
+  // Firebase code
+  signInWithEmailAndPassword(auth, email, password)
+    .then((result) => {
+      // Signed in
+      const user = result.user;
+      uid = result.user.uid;
+      
+      // Save email and uid to localStorage
+      localStorage.setItem("email", email);
+      localStorage.setItem("uid", uid);
+
+    
+      
+      window.location.href = "mainpage.html";
+    }) 
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      alert(errorMessage);
+});
+}
+
+//Register Function
 let file = null;
 
 window.register = async () => {
@@ -56,7 +75,6 @@ window.register = async () => {
   const name = document.getElementById("firstname").value;
   const surname = document.getElementById("lastname").value;
   const age = document.getElementById("age").value;
-  console.log(email, password, name, surname, age);
 
   // Firebase code
   try {
@@ -69,7 +87,6 @@ window.register = async () => {
     const successMessage = document.createElement("p");
     successMessage.textContent = "You are registered";
     document.body.appendChild(successMessage);
-    console.log(userCredentials);
 
     const userData = {
       name: name,
@@ -77,7 +94,7 @@ window.register = async () => {
       age: age,
       email: email,
     };
-    const uid = result.user.uid;
+
     const userDocRef = doc(db, "users", userCredentials.user.uid);
 
     // Upload the image to storage
@@ -90,7 +107,7 @@ window.register = async () => {
 
       // Get the download URL of the uploaded image
       const downloadURL = await getDownloadURL(storageRef);
-
+    
       // Add the download URL to the user data
       userData.photoURL = downloadURL;
     }
@@ -100,78 +117,30 @@ window.register = async () => {
     console.log("User information added to Firestore.");
 
     createPic(userCredentials.user.uid);
-	
-	// Save email and uid to localStorage
-      localStorage.setItem("email", email);
-      localStorage.setItem("uid", uid);
-      localStorage.setItem("urldown", downloadURL);
-
-	// Redirect to mainpage.html
-    window.location.href = "mainpage.html";
-
   } catch (error) {
     console.log(error.code);
     console.log(error.message);
   }
-  };
+};
 
-  const fileInput = document.getElementById("choose-file");
-  fileInput.addEventListener("change", (event) => {
-    file = event.target.files[0];
-  });
+const fileInput = document.getElementById("choose-file");
+fileInput.addEventListener("change", (event) => {
+  file = event.target.files[0];
+});
 
-  function createPic(uid) {
-    if (file) {
-      const storageRef = ref(storage, `users/${uid}/foto.png`);
-      uploadBytes(storageRef, file)
-        .then(() => {
-          console.log("Upload successful");
-        })
-        .catch((error) => {
-          console.log("Error uploading file:", error);
-        });
-    }
+function createPic(uid) {
+  if (file) {
+    const storageRef = ref(storage, `users/${uid}/foto.png`);
+    uploadBytes(storageRef, file)
+      .then(() => {
+        console.log("Upload successful");
+        window.location.href = "mainpage.html";
+      })
+      .catch((error) => {
+        console.log("Error uploading file:", error);
+      });
   }
-  }
-  //Firebase code
-//   createUserWithEmailAndPassword(auth, email, password)
-//     .then((userCredentials) => {
-//       // Signed in
-//       alert("Login criada com sucesso.")
-//       const user = result.user;
-//       uid = result.user.uid;
-
-//       // Save email and uid to localStorage
-//       localStorage.setItem("email", email);
-//       localStorage.setItem("uid", uid);
-
-//       window.location.href = "mainpage.html"
-//       createPic(userCredentials.user.uid);
-//     })
-//     .catch((error) => {
-//       alert(error);
-//       console.log(error.code);
-//       console.log(error.message);
-//       // ..
-//     });
-// };
-
-// function createPic(uid) {
-//   if (file) {
-//     // const userRef = storage.child("users/user1/" + file.name);
-//     const userRef = ref(storage, "users");
-//     const uidRef = ref(userRef, uid);
-//     const user1Ref = ref(uidRef, "user1.png");
-
-//     uploadBytes(user1Ref, file)
-//       .then(() => {
-//         console.log("Upload");
-//       })
-//       .catch((err) => {
-//         console.log(err);
-//       });
-//  }
-//}#endregion
+}
 
 //Log in with GOOGLE
 const provider = new GoogleAuthProvider();
@@ -189,7 +158,6 @@ window.logInGoogle = () => {
       // Save email and uid to localStorage
       localStorage.setItem("email", email);
       localStorage.setItem("uid", uid);
-      localStorage.setItem("urldown", downloadURL);
     })
     .catch((error) => {
       // Handle Errors here.
@@ -202,55 +170,6 @@ window.logInGoogle = () => {
       // ...
     });
 };
-
-//LogIn function
-window.logIn = () => {
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-  console.log(email, password);
-
-  // Firebase code
-  signInWithEmailAndPassword(auth, email, password)
-    .then((result) => {
-      // Signed in
-      const user = result.user;
-      uid = result.user.uid;
-      
-      
-      // Save email and uid to localStorage
-      localStorage.setItem("email", email);
-      localStorage.setItem("uid", uid);
-      
-
-      console.log(uid);
-      console.log(localStorage)
-      window.location.href = "mainpage.html";
-    }) 
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      alert(errorMessage);
-  //   });#endregion
-});
-}
-// Put a img in the folder of the user
-// let file = null;
-// const fileInput = document.getElementById("choose-file");
-// fileInput.addEventListener("change", async (event) => {
-//   file = event.target.files[0];
-// });
-
-// window.profilePhoto = async function () {
-//   if (file) {
-//     const userRef = storage.child("users/user1/" + file.name);
-
-//     await userRef.put(file);
-//     const downloadURL = await userRef.getDownloadURL();
-//     console.log("URL:", downloadURL);
-//   }
-// };
-
-//#region SERVICE WORKER
 
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker
@@ -265,5 +184,5 @@ if ("serviceWorker" in navigator) {
     });
 }
 
-//#endregion
+
 

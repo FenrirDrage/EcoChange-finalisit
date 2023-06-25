@@ -1,21 +1,13 @@
   var email = localStorage.getItem("email");
   var uid = localStorage.getItem("uid");
-  var imageURL = localStorage.getItem("imageURL");
-  var storedName = localStorage.getItem('name');
-  var storedSurname = localStorage.getItem('surname');
-  const centerDataString = localStorage.getItem("centerData");
-  console.log(localStorage);
+  var uage = localStorage.getItem("age");
+  var uname = localStorage.getItem("name");
+  var uPRL = localStorage.getItem("photoURL");
+  var usname =  localStorage.getItem("surname");
  
   // Recuperar o centerData do localStorage
 
-  if (centerDataString) {
-    const centerData = JSON.parse(centerDataString);
-    console.log("Dados recuperados do localStorage:", centerData);
-  } else {
-    console.log("Não há dados armazenados no localStorage.");
-  }
-
-  function selectItem(item, event) {
+ function selectItem(item, event) {
     event.preventDefault(); // Prevent the default link behavior
   
     // Remove the 'selected' class from all menu items
