@@ -239,11 +239,11 @@
         const userCard = document.createElement('div');
         userCard.classList.add('card');
         userCard.style.width = '200px';
-        userCard.style.height = '300px';
+        userCard.style.height = '350px';
 
         // Create the user image element
         const userImage = document.createElement('img');
-        userImage.src = 'path/to/user/image.jpg'; // Replace with the path to the user image
+        userImage.src = uPRL; // Replace with the path to the user image
         userImage.alt = 'User Image';
         userImage.style.width = '100%';
         userImage.style.height = '200px';
@@ -253,10 +253,13 @@
         // uidElement.textContent = 'UID: ' + uid;
         // Create the name and surname elements
         const nameElement = document.createElement('p');
-        nameElement.textContent = 'Name: ' + localStorage.getItem('name');
+        nameElement.textContent = 'Name: ' + uname;
 
         const surnameElement = document.createElement('p');
-        surnameElement.textContent = 'Surname: ' + localStorage.getItem('surname');
+        surnameElement.textContent = 'Surname: ' + usname;
+
+        const ageElement = document.createElement('p');
+        ageElement.textContent = 'Age: ' + uage;
 
         // Append the user image and UID element to the user card
         userCard.appendChild(userImage);
@@ -264,6 +267,7 @@
         // Append the name and surname elements to the card
         userCard.appendChild(nameElement);
         userCard.appendChild(surnameElement);
+        userCard.appendChild(ageElement);
 
         // Append the user card to the card container
         cardContainer.appendChild(userCard);
